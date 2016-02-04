@@ -4,8 +4,10 @@ public class Person {
 	public static String myN;
 	public static String name;
 	public static void main(String[] args) {
-		
-		myN = greet("Kyle");
+		int[] duplicatesInOrder1 = new int[0];// {1, 2, 3, 3};//, 2, 1, 2, 3, 1, 1, 3, 2};
+		int[] rtn = new int[duplicatesInOrder1.length];
+		rtn = unique(duplicatesInOrder1);
+		/*myN = greet("Kyle");
 		System.out.println(myN);
 		if (dupChar("ABCabc1")) {
 			System.out.println("duplicate letter found");
@@ -15,6 +17,7 @@ public class Person {
 			System.out.println("No duplicate!!");
 		}
 		dupCharCnt("ABCabc!123~!");
+		*/
 	}
 	public Person(String personName) {
             name = personName;
@@ -62,5 +65,49 @@ public class Person {
 			}
 		}
 	}
-
+	
+	public static int[] unique(int[] integers) {
+		int[] u = new int[integers.length];
+		int x = 0;
+		
+		for(int i=0; i < integers.length; i++) {
+			x = integers[i];
+			if (!dupNum(x, u)) {
+				u[i] = x;
+			}
+		}
+		int[] v = new int[u.length];
+		for(int y = 0; y < u.length; y++) {
+			v[y] = u[y];
+		}
+		return v;
+	}
+	public static boolean dupNum(int x, int[] dupN) {
+		boolean rtn = false;
+		for (int y : dupN) {
+			if (x == y) {
+				rtn = true;
+				break;
+			}
+		}
+			
+		return rtn;
+	}
+	public static int[] unique2(int[] integers) {
+		
+		int[] k = new int[] {};
+		int j = 0;
+		Map<Integer, Integer> numCntMap = new HashMap<>();
+		for (int c : integers) {
+			if (numCntMap.containsKey(c)) {
+				continue;
+			}
+			else {
+				numCntMap.put(c, 1);
+				k[j] = c;
+				j++;
+			}
+		}
+		return k;
+	}
 }
